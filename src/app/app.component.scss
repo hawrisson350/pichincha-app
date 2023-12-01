@@ -1,0 +1,16 @@
+.container{
+    float: left;
+    width: 80%;
+    padding: 15px;
+    box-sizing: border-box;
+    margin:90px 10% 0;
+    background-color: #F4F6F9;
+    min-height: calc(100vh - 130px);
+}
+
+bpi-top-bar,
+bpi-footer{
+    width: 100%;
+    float: left;
+    box-sizing: border-box;
+}

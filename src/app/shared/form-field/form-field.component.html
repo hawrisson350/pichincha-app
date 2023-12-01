@@ -1,0 +1,10 @@
+<div class="bpi-form-field__container">
+    <ng-content select="[bpiIcon]"></ng-content>
+    <ng-content select="[bpiLabel]"></ng-content>
+    <ng-content select="[bpiInput]"></ng-content>
+</div>
+<ng-container *ngIf="showError">
+    <div class="bpi-form-field__errors-container">
+        <ng-content select="bpi-error"></ng-content>
+    </div>
+</ng-container>

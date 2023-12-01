@@ -1,0 +1,9 @@
+<p>form works!</p>
+
+<form action="" [formGroup]="formProduct">
+    <bpi-form-field>
+        <label bpiLabel for="input">Name</label>
+        <input bpiInput id="input" type="text" formControlName="name">
+        <bpi-error>El campo es requerido</bpi-error>
+    </bpi-form-field>
+</form>

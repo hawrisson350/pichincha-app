@@ -1,0 +1,147 @@
+%hint {
+    font-family: "Open Sans", "Helvetica Neue", sans-serif;
+    font-size: 15px;
+}
+
+$primary:#0400ff;
+
+.bpi-form-field {
+    border: none;
+    margin: 0;
+    padding: 0;
+
+    .bpi-form-field__error {
+        @extend %hint;
+        color: red;
+    }
+
+    &--error {
+        .bpi-form-field__container {
+            border-color: red;
+            transition: border-color 0.3s;
+        }
+
+        .bpi-form-field__label {
+            color: red;
+            transition: color 0.3s;
+        }
+    }
+
+    .bpi-form-field__info {
+        @extend %hint;
+        color: green;
+    }
+
+    &--info {
+        .bpi-form-field__container {
+            border-color: green;
+            transition: border-color 0.3s;
+        }
+
+        .bpi-form-field__label {
+            color: green;
+            transition: color 0.3s;
+        }
+    }
+
+    &__info {
+        display: flex;
+        align-items: flex-end;
+        margin-top: 4px;
+    }
+
+    &__container {
+        position: relative;
+    }
+
+    &__errors-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__label {
+        color: gray;
+        font-size: 14px;
+        font-weight: 400;
+        padding: 0 4px;
+        z-index: 1;
+        pointer-events: none;
+    }
+
+    &__label:before {
+        content: ' ';
+        background-color:white;
+        position: absolute;
+        left: 0;
+        top: 6px;
+        z-index: -1;
+        width: 100%;
+        height: 1px;
+    }
+
+    &__label--required:after {
+        content: ' *';
+    }
+
+    [bpiInput] {
+        width: 100%;
+        border-radius: 5px;
+        border: 1px solid #999;
+        padding: 8px 16px;
+        outline: 0;
+        background-color: white;
+        color: grey;
+    }
+
+    select[bpiInput] {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        background-image:
+            linear-gradient(45deg, transparent 50%, gray 50%),
+            linear-gradient(135deg, gray 50%, transparent 50%),
+            none;
+        background-position: calc(100% - 15px) calc(1em + 0px), calc(100% - 10px) calc(1em + 0px), calc(100% - 2.5em) 0.5em;
+        background-size:
+            5px 5px,
+            5px 5px,
+            1px 1.5em;
+        background-repeat: no-repeat;
+        color: grey;
+    }
+
+    &--focused {
+        .bpi-form-field__input {
+            border-color: $primary;
+            transition: border-color 0.3s;
+        }
+    }
+
+    &--disabled {
+        .bpi-form-field__container {
+            background-color: gray;
+            border-color: gray;
+        }
+
+        .bpi-form-field__label {
+            color: gray;
+        }
+
+        .bpi-form-field__label:before {
+            color: gray;
+            background-color: gray;
+        }
+
+        .bpi-form-field__input {
+            cursor: not-allowed;
+            color: gray;
+            background-color: gray;
+            -webkit-text-fill-color: gray;
+
+            &::placeholder {
+                color: gray;
+                -webkit-text-fill-color: gray;
+            }
+        }
+    }
+}
