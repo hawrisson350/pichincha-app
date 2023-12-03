@@ -1,17 +1,9 @@
 import {
-  Directive,
-  ElementRef,
-  HostListener,
-  Input,
-  OnDestroy,
-  OnInit,
-  Optional,
+  Directive, DoCheck, ElementRef, HostListener, Input, OnDestroy, OnInit, Optional,
 } from '@angular/core';
-import { NgControl } from '@angular/forms';
+import { NgControl, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { FormFieldComponent } from './form-field.component';
-
-
 
 @Directive({
   selector: '[bpiInput]',
@@ -20,7 +12,8 @@ import { FormFieldComponent } from './form-field.component';
     '[disabled]': 'disabled',
   }
 })
-export class FormFieldInputDirective implements OnInit, OnDestroy {
+
+export class FormFieldInputDirective implements OnInit, OnDestroy, DoCheck {
   private subscriptions: Subscription[] = [];
 
   constructor(
@@ -31,6 +24,10 @@ export class FormFieldInputDirective implements OnInit, OnDestroy {
 
   ngOnInit() {
     if (this.ngControl) {
+
+      this.formField.$isRequired = this.ngControl?.control?.hasValidator(Validators.required) ?? false;
+      this.formField.$isDisabled = this.ngControl.disabled ?? false;
+
       // @ts-ignore
       const subscription1 = this.ngControl.statusChanges.subscribe(status => {
         this.formField.$isDisabled = status === 'DISABLED';
@@ -58,6 +55,13 @@ export class FormFieldInputDirective implements OnInit, OnDestroy {
         return;
       }
       this.formField.$isSelected = false;
+    }
+  }
+
+  ngDoCheck() {
+    if (this.ngControl.control?.touched) {
+      this.formField.$isTouched = true;
+      this.formField.$hasError = this.ngControl.errors ? true : false;
     }
   }
 

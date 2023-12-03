@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormFieldModule } from './form-field/form-field.module';
+import { ButtonsModule } from './buttons/buttons.module';
 
 
 @NgModule({
@@ -9,7 +10,8 @@ import { FormFieldModule } from './form-field/form-field.module';
     CommonModule,
   ],
   exports:[
-    FormFieldModule
+    FormFieldModule,
+    ButtonsModule
   ]
 })
 export class SharedModule { }

@@ -1,9 +1,47 @@
-<p>form works!</p>
+<div class="titleWrap">
+    <h1>Formulario de registro</h1>
+</div>
 
-<form action="" [formGroup]="formProduct">
+<form class="formWrap" [formGroup]="formProduct">
     <bpi-form-field>
-        <label bpiLabel for="input">Name</label>
-        <input bpiInput id="input" type="text" formControlName="name">
+        <label bpiLabel for="id">ID</label>
+        <input bpiInput id="id" type="text" formControlName="id" minlength="3" maxlength="10">
+        <bpi-error>
+            El campo es requerido
+        </bpi-error>
+    </bpi-form-field>
+
+    <bpi-form-field>
+        <label bpiLabel for="name">Nombre</label>
+        <input bpiInput id="name" type="text" formControlName="name">
+        <bpi-error>El campo es requerido</bpi-error>
+    </bpi-form-field>
+
+    <bpi-form-field>
+        <label bpiLabel for="description">Descripción</label>
+        <input bpiInput id="description" type="text" formControlName="description">
+        <bpi-error>El campo es requerido</bpi-error>
+    </bpi-form-field>
+
+    <bpi-form-field>
+        <label bpiLabel for="logo">Logo</label>
+        <input bpiInput id="logo" type="text" formControlName="logo">
+        <bpi-error>El campo es requerido</bpi-error>
+    </bpi-form-field>
+
+    <bpi-form-field>
+        <label bpiLabel for="date_release">Fecha liberación</label>
+        <input bpiInput id="date_release" type="date" format="yyyy-mm-dd" formControlName="date_release">
+        <bpi-error>El campo es requerido</bpi-error>
+    </bpi-form-field>
+
+    <bpi-form-field>
+        <label bpiLabel for="date_revision">Fecha Liberación</label>
+        <input bpiInput id="date_revision" type="date" format="yyyy-mm-dd" formControlName="date_revision">
         <bpi-error>El campo es requerido</bpi-error>
     </bpi-form-field>
 </form>
+<div class="buttonsWrap">
+    <button bpiButton size="lg" variant="dark" routerLink="../">Regresar</button>
+    <button bpiButton size="lg" variant="principal" (click)="sendDataProduct()">Enviar</button>
+</div>

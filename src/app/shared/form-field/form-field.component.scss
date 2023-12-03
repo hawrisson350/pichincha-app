@@ -3,55 +3,23 @@
     font-size: 15px;
 }
 
-$primary:#0400ff;
+$primary: #FFDD00;
+$secondary: #1B2D54;
+$errorColor: #B00020;
+$successColor: #03DAC6;
+$darkColor: #0D0D0D;
+$disableColor: #999;
 
 .bpi-form-field {
     border: none;
     margin: 0;
-    padding: 0;
-
-    .bpi-form-field__error {
-        @extend %hint;
-        color: red;
-    }
-
-    &--error {
-        .bpi-form-field__container {
-            border-color: red;
-            transition: border-color 0.3s;
-        }
-
-        .bpi-form-field__label {
-            color: red;
-            transition: color 0.3s;
-        }
-    }
-
-    .bpi-form-field__info {
-        @extend %hint;
-        color: green;
-    }
-
-    &--info {
-        .bpi-form-field__container {
-            border-color: green;
-            transition: border-color 0.3s;
-        }
-
-        .bpi-form-field__label {
-            color: green;
-            transition: color 0.3s;
-        }
-    }
-
-    &__info {
-        display: flex;
-        align-items: flex-end;
-        margin-top: 4px;
-    }
+    padding: 0 10px;
 
     &__container {
         position: relative;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
     }
 
     &__errors-container {
@@ -60,54 +28,51 @@ $primary:#0400ff;
     }
 
     &__label {
-        color: gray;
-        font-size: 14px;
+        color: $darkColor;
+        font-size: 16px;
         font-weight: 400;
-        padding: 0 4px;
-        z-index: 1;
+        padding: 10px 0;
         pointer-events: none;
-    }
-
-    &__label:before {
-        content: ' ';
-        background-color:white;
-        position: absolute;
-        left: 0;
-        top: 6px;
-        z-index: -1;
-        width: 100%;
-        height: 1px;
     }
 
     &__label--required:after {
         content: ' *';
     }
 
-    [bpiInput] {
+    .bpi-form-field__input {
         width: 100%;
-        border-radius: 5px;
-        border: 1px solid #999;
-        padding: 8px 16px;
+        border-radius: 7px;
+        border: 1px solid;
+        border-color:  $darkColor;
+        padding: 15px 10px;
         outline: 0;
         background-color: white;
-        color: grey;
+        color: $darkColor;
+        font-size: 15px;
     }
 
-    select[bpiInput] {
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        appearance: none;
-        background-image:
-            linear-gradient(45deg, transparent 50%, gray 50%),
-            linear-gradient(135deg, gray 50%, transparent 50%),
-            none;
-        background-position: calc(100% - 15px) calc(1em + 0px), calc(100% - 10px) calc(1em + 0px), calc(100% - 2.5em) 0.5em;
-        background-size:
-            5px 5px,
-            5px 5px,
-            1px 1.5em;
-        background-repeat: no-repeat;
-        color: grey;
+    // select[bpiInput] {
+    //     -webkit-appearance: none;
+    //     -moz-appearance: none;
+    //     appearance: none;
+    //     background-image:
+    //         linear-gradient(45deg, transparent 50%, gray 50%),
+    //         linear-gradient(135deg, gray 50%, transparent 50%),
+    //         none;
+    //     background-position: calc(100% - 15px) calc(1em + 0px), calc(100% - 10px) calc(1em + 0px), calc(100% - 2.5em) 0.5em;
+    //     background-size:
+    //         5px 5px,
+    //         5px 5px,
+    //         1px 1.5em;
+    //     background-repeat: no-repeat;
+    //     color: grey;
+    // }
+
+    &--selected {
+        .bpi-form-field__input {
+            border-color: $secondary;
+            transition: border-color 0.3s;
+        }
     }
 
     &--focused {
@@ -118,30 +83,43 @@ $primary:#0400ff;
     }
 
     &--disabled {
-        .bpi-form-field__container {
-            background-color: gray;
-            border-color: gray;
-        }
-
         .bpi-form-field__label {
-            color: gray;
+            color: $disableColor;
         }
 
         .bpi-form-field__label:before {
-            color: gray;
-            background-color: gray;
+            color: $disableColor;
+            background-color: $disableColor;
         }
 
         .bpi-form-field__input {
             cursor: not-allowed;
-            color: gray;
-            background-color: gray;
-            -webkit-text-fill-color: gray;
+            color: $disableColor;
+            border-color: $disableColor;
+            background-color: #BBB;
+            -webkit-text-fill-color: #BBB;
 
             &::placeholder {
-                color: gray;
-                -webkit-text-fill-color: gray;
+                color: $disableColor;
+                -webkit-text-fill-color: $disableColor;
             }
+        }
+    }
+
+    .bpi-form-field__error {
+        @extend %hint;
+        color: $errorColor;
+    }
+
+    &--error {
+        .bpi-form-field__input {
+            border-color: $errorColor;
+            transition: border-color 0.3s;
+        }
+
+        .bpi-form-field__label {
+            color: $errorColor;
+            transition: color 0.3s;
         }
     }
 }
