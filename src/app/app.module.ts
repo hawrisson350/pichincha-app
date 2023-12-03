@@ -9,6 +9,7 @@ import { DashboardComponent } from './views/pages/dashboard/dashboard.component'
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { HttpAuthorInterceptor } from './core/config/httpAuthor.interceptor';
 import {DatePipe} from '@angular/common';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import {DatePipe} from '@angular/common';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    SharedModule
   ],
   providers: [
     DatePipe,

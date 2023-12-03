@@ -1,4 +1,4 @@
-%hint {
+%font {
     font-family: "Open Sans", "Helvetica Neue", sans-serif;
     font-size: 15px;
 }
@@ -51,22 +51,26 @@ $disableColor: #999;
         font-size: 15px;
     }
 
-    // select[bpiInput] {
-    //     -webkit-appearance: none;
-    //     -moz-appearance: none;
-    //     appearance: none;
-    //     background-image:
-    //         linear-gradient(45deg, transparent 50%, gray 50%),
-    //         linear-gradient(135deg, gray 50%, transparent 50%),
-    //         none;
-    //     background-position: calc(100% - 15px) calc(1em + 0px), calc(100% - 10px) calc(1em + 0px), calc(100% - 2.5em) 0.5em;
-    //     background-size:
-    //         5px 5px,
-    //         5px 5px,
-    //         1px 1.5em;
-    //     background-repeat: no-repeat;
-    //     color: grey;
-    // }
+    input[type="date"], input[type="time"] {
+        @extend %font;
+     }
+
+    select[bpiInput] {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        background-image:
+            linear-gradient(45deg, transparent 50%, gray 50%),
+            linear-gradient(135deg, gray 50%, transparent 50%),
+            none;
+        background-position: calc(100% - 15px) calc(1.3em + 0px), calc(100% - 10px) calc(1.3em + 0px), calc(100% - 2.5em) 0.5em;
+        background-size:
+            5px 5px,
+            5px 5px,
+            1px 1.5em;
+        background-repeat: no-repeat;
+        color: grey;
+    }
 
     &--selected {
         .bpi-form-field__input {
@@ -87,17 +91,10 @@ $disableColor: #999;
             color: $disableColor;
         }
 
-        .bpi-form-field__label:before {
-            color: $disableColor;
-            background-color: $disableColor;
-        }
-
         .bpi-form-field__input {
             cursor: not-allowed;
-            color: $disableColor;
             border-color: $disableColor;
             background-color: #BBB;
-            -webkit-text-fill-color: #BBB;
 
             &::placeholder {
                 color: $disableColor;
@@ -107,7 +104,7 @@ $disableColor: #999;
     }
 
     .bpi-form-field__error {
-        @extend %hint;
+        @extend %font;
         color: $errorColor;
     }
 

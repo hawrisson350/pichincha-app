@@ -1,3 +1,14 @@
+.formMainWrap{
+    width: 100%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    &>* {
+        max-width: 1200px;
+    }
+}
+
 .titleWrap{
     width: 100%;
     display: inline-flex;
@@ -13,7 +24,6 @@
     display: inline-flex;
     flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
     &>* {
         width: 50%;
         min-width: 300px;

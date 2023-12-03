@@ -59,7 +59,7 @@ export class FormFieldInputDirective implements OnInit, OnDestroy, DoCheck {
   }
 
   ngDoCheck() {
-    if (this.ngControl.control?.touched) {
+    if (this.ngControl?.control?.touched) {
       this.formField.$isTouched = true;
       this.formField.$hasError = this.ngControl.errors ? true : false;
     }
