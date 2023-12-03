@@ -4,16 +4,16 @@ export class Product {
   private name: string;
   private description: string;
   private logo: string;
-  private date_release: Date;
-  private date_revision: Date;
+  private date_release: string;
+  private date_revision: string;
 
   constructor(
     id: string,
     name: string,
     description: string,
     logo: string,
-    date_release: Date,
-    date_revision: Date,
+    date_release: string,
+    date_revision: string,
   ) {
     this.id = id;
     this.name = name;
@@ -21,6 +21,13 @@ export class Product {
     this.logo = logo;
     this.date_release = date_release;
     this.date_revision = date_revision;
+  }
+
+
+  public matches(params: Partial<Product>): boolean {
+    return !Object.entries(params).some(([k, v]) => {
+      return this[k as keyof Product] !== v;
+    })
   }
 
 
@@ -58,17 +65,17 @@ export class Product {
 
   /**
    * Getter $date_release
-   * @return {Date}
+   * @return {string}
    */
-  public get $date_release(): Date {
+  public get $date_release(): string {
     return this.date_release;
   }
 
   /**
    * Getter $date_revision
-   * @return {Date}
+   * @return {string}
    */
-  public get $date_revision(): Date {
+  public get $date_revision(): string {
     return this.date_revision;
   }
 
@@ -106,17 +113,17 @@ export class Product {
 
   /**
    * Setter $date_release
-   * @param {Date} value
+   * @param {string} value
    */
-  public set $date_release(value: Date) {
+  public set $date_release(value: string) {
     this.date_release = value;
   }
 
   /**
    * Setter $date_revision
-   * @param {Date} value
+   * @param {string} value
    */
-  public set $date_revision(value: Date) {
+  public set $date_revision(value: string) {
     this.date_revision = value;
   }
 

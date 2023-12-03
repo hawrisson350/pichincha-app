@@ -9,9 +9,10 @@ import { FormFieldErrorComponent } from './form-field-error.component';
   host: {
     'class': 'bpi-form-field',
     '[class.bpi-form-field--error]': 'showError',
-    '[class.bpi-form-field--focused]': 'isFocused',
-    '[class.bpi-form-field--disabled]': 'isDisabled',
-    '[class.bpi-form-field--selected]': 'isSelected',
+    '[class.bpi-form-field--focused]': '$isFocused',
+    '[class.bpi-form-field--disabled]': '$isDisabled',
+    '[class.bpi-form-field--selected]': '$isSelected',
+    '[class.bpi-form-field--touched]': '$isTouched',
   }
 })
 export class FormFieldComponent {
@@ -20,6 +21,8 @@ export class FormFieldComponent {
   private isFocused: boolean = false;
   private isDisabled: boolean = false;
   private isSelected: boolean = false;
+  private isRequired: boolean = false;
+  private isTouched: boolean = false;
 
   @ContentChild(FormFieldErrorComponent, { static: false }) error!: FormFieldErrorComponent;
 
@@ -29,7 +32,7 @@ export class FormFieldComponent {
     if (this.isDisabled) {
       return false;
     } else {
-      return this.$hasError;
+      return this.isTouched && this.hasError;
     }
   }
 
@@ -66,6 +69,22 @@ export class FormFieldComponent {
   }
 
   /**
+ * Getter $isRequired
+ * @return {boolean }
+ */
+  public get $isRequired(): boolean {
+    return this.isRequired;
+  }
+
+  /**
+ * Getter $isTouched
+ * @return {boolean }
+ */
+  public get $isTouched(): boolean {
+    return this.isTouched;
+  }
+
+  /**
  * Setter $hasError
  * @param {boolean } value
  */
@@ -97,5 +116,20 @@ export class FormFieldComponent {
     this.isSelected = value;
   }
 
+  /**
+ * Setter $isRequired
+ * @param {boolean } value
+ */
+  public set $isRequired(value: boolean) {
+    this.isRequired = value;
+  }
+
+  /**
+* Setter isTouched
+* @param {boolean } value
+*/
+  public set $isTouched(value: boolean) {
+    this.isTouched = value;
+  }
 
 }

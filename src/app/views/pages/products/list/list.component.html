@@ -1,4 +1,84 @@
-<p>list works!</p>
+<div class="productTableMainWrap">
+    <div class="titleWrap">
+        <h1>Lista de productos</h1>
+    </div>
 
-<br>
-    <a [routerLink]="['./form']">Nuevo productos</a>
+
+    <div class="tableMainWrap" cellspacing="0" cellpadding="0">
+        <div class="tableActionsWrap">
+            <button class="buttonNew" bpiButton size="lg" variant="principal" routerLink="./form">Agregar</button>
+        </div>
+        <div class="tableActionsWrap">
+            <bpi-form-field>
+                <input bpiInput id="id" [type]="typeInput" placeholder="Ingrese su busqueda" [(ngModel)]="searchDataSelected">
+            </bpi-form-field>
+            <bpi-form-field>
+                <select bpiInput name="select" [(ngModel)]="searchCriteriaSelected">
+                    <option value="">Selecciona un criterio</option>
+                    <option value="$name">Nombre</option>
+                    <option value="$description">Descripción</option>
+                    <option value="$date_release">Fecha de liberación</option>
+                    <option value="$date_revision">Fecha de reestructuración</option>
+                </select>
+            </bpi-form-field>
+            <button class="filterBtn" bpiButton size="lg" variant="principal" (click)="seachItem()" [disabled]="searchCriteriaSelected ==='' || searchDataSelected===''">
+                <i class="material-icons">search</i>
+            </button>
+            <button class="filterBtn" bpiButton size="lg" variant="dark" (click)="reseatPaginate()">
+                <i class="material-icons">close</i>
+            </button>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Logo</th>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Fecha de liberación</th>
+                    <th>Fecha de reestructuración</th>
+                    <th> </th>
+                </tr>
+            </thead>
+            <tbody>
+                <ng-container *ngIf="dataInTable.length; then data; else noItems"></ng-container>
+                <ng-template #data>
+                    <tr *ngFor="let item of dataInTable;">
+                        <td>
+                            <img [src]="item.$logo" [alt]="item.$name" class="logoInTable">
+                        </td>
+                        <td>{{item.$name}}</td>
+                        <td>{{item.$description}}</td>
+                        <td>{{item.$date_release | date: 'dd/MM/yyyy'}}</td>
+                        <td>{{item.$date_revision | date: 'dd/MM/yyyy'}}</td>
+                        <td>
+                            <a routerLink="./form" [state]=item>
+                                <i class="material-icons" >create</i>
+                            </a>
+
+                            <a href="javascript:void(0)" (click)="deleteItem(item)">
+                                <i class="material-icons" >delete</i>
+                            </a>
+                        </td>
+                    </tr>
+                </ng-template>
+                <ng-template #noItems>
+                    <tr>
+                        <td colspan="6" class="void">No hay registros</td>
+                    </tr>
+                </ng-template>
+            </tbody>
+        </table>
+        <div class="tableFooter">
+            <div class="textWrap">
+                {{pageSelected}} Resultados
+            </div>
+            <bpi-form-field class="buttonNew">
+                <select bpiInput name="select" [(ngModel)]="pageSelected" (ngModelChange)="changePageSize($event)">
+                    <option *ngFor="let option of pageSizeList" [value]="option">
+                        {{option}}
+                    </option>
+                </select>
+            </bpi-form-field>
+        </div>
+    </div>
+</div>
